@@ -39,11 +39,9 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
-
 }
 
 :root {
-
   --breakpoint-sm: 512px;
   --breakpoint-md: 768px;
   --breakpoint-lg: 960px;
@@ -120,18 +118,29 @@
   * {
     @apply border-border outline-ring/50;
   }
-  .h1{
+  .h1 {
     @apply text-[40px] lg:text-[80px] leading-[1.1] font-semibold;
   }
-  .h2{
+  .h2 {
     @apply text-[36px] lg:text-[48px] leading-[1.1] font-semibold;
   }
-  .h3{
+  .h3 {
     @apply text-[20px] lg:text-[20px] leading-[1.1] font-semibold;
   }
+
 }
 @layer components {
   .container {
     @apply px-6 sm:px-8 lg:px-10 max-w-xl;
+  }
+}
+
+@layer utilities{
+  .text-outline {
+    -webkit-text-stroke: 1px #ffffff;
+  }
+  .group:hover .group-hover\:text-outline-hover {
+    color: transparent;
+    -webkit-text-stroke: 1px #00ff99;
   }
 }
