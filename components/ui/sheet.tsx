@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import * as SheetPrimitive from "@radix-ui/react-dialog";
-import { XIcon } from "lucide-react";
+import { IoClose } from "react-icons/io5";
 
 import { cn } from "@/lib/utils";
 
@@ -73,7 +73,7 @@ function SheetContent({
       >
         {children}
         <SheetPrimitive.Close className="absolute right-8 top-8 transition-opacity outline-none">
-          <XIcon className="text-[32px] text-accent" />
+          <IoClose className="text-[32px] text-accent" />
           <span className="sr-only">Close</span>
         </SheetPrimitive.Close>
       </SheetPrimitive.Content>

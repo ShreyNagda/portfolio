@@ -1,15 +1,10 @@
 "use client";
 
-import {
-  Sheet,
-  SheetClose,
-  SheetContent,
-  SheetTitle,
-  SheetTrigger,
-} from "./ui/sheet";
+import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "./ui/sheet";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { AlignRight } from "lucide-react";
+// import {  } from "react-icons/fa"
+import { HiMenuAlt3 } from "react-icons/hi";
 import { useState } from "react";
 
 const links = [
@@ -30,7 +25,7 @@ export default function MobileNav() {
         className="flex items-center justify-center"
         onClick={() => setOpen(true)}
       >
-        <AlignRight className="text-accent text-[32px]" />
+        <HiMenuAlt3 className="text-accent text-[32px]" />
       </SheetTrigger>
       <SheetContent className="p-8 flex flex-col">
         {/* Logo */}
