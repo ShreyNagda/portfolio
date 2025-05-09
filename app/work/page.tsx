@@ -2,7 +2,7 @@ const projects = [
   {
     num: "01",
     category: "Frontend Project",
-    title: "",
+    title: "Exalt Event Site",
     desc: "",
     github: "",
     live: "",
@@ -26,5 +26,6 @@ const projects = [
 ];
 
 export default function Work() {
+  console.log(projects);
   return <div className="container mx-auto">Work</div>;
 }
