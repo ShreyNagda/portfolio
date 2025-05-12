@@ -61,7 +61,7 @@ export default function Services() {
                 <BsArrowDownRight className="text-primary text-3xl" />
               </Link>
             </div>
-            <div className="text-[42px] font-bold leading-none text-white group-hover:text-accent">
+            <div className="text-[36px] lg:text-[42px] font-bold leading-none text-white group-hover:text-accent">
               {service.title}
             </div>
             <p className="text-white/60">{service.description}</p>
