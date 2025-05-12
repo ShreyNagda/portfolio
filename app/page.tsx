@@ -2,6 +2,7 @@ import Photo from "@/components/Photo";
 import Socials from "@/components/Socials";
 import Stats from "@/components/Stats";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 import { MdOutlineFileDownload } from "react-icons/md";
 
 export default function Home() {
@@ -21,8 +22,14 @@ export default function Home() {
             </p>
             <div className="flex flex-col lg:flex-row items-center gap-8">
               <Button variant="outline">
-                <span>Download CV</span>
-                <MdOutlineFileDownload className="w-9 h-9" />
+                <Link
+                  href={"/Resume.pdf"}
+                  download
+                  className="flex gap-2 items-center"
+                >
+                  <span>Download CV</span>
+                  <MdOutlineFileDownload className="w-10 h-10" />
+                </Link>
               </Button>
               <div className="mb-9 lg:mb-0">
                 <Socials className="flex gap-6" />

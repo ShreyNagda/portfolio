@@ -12,6 +12,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { Swiper as SwiperType } from "swiper/types";
 import Image from "next/image";
+import SliderButtons from "@/components/SliderButtons";
 
 const projects = [
   {
@@ -81,7 +82,7 @@ export default function Work() {
           transition: { delay: 2, duration: 0.4, ease: "easeIn" },
         }}
       >
-        <div className="min-h-[60vh] flex flex-col justify-center lg:flex-row lg:gap-[30px] py-12">
+        <div className="flex flex-col justify-center lg:flex-row lg:gap-[30px] py-12">
           <div className="order-2 lg:order-none w-full lg:w-[50%] lg:h-[460px] flex flex-col lg:justify-between">
             <div className="flex flex-col gap-[20px]">
               <div className="text-8xl leading-none text-outline text-transparent font-extrabold">
@@ -138,28 +139,29 @@ export default function Work() {
             <Swiper
               spaceBetween={30}
               slidesPerView={1}
-              className="lg:h-[520px] mb-12"
+              className="md:mb-12"
               onSlideChange={(swiper) => handleSlideChange(swiper)}
             >
               {projects.map((project, index) => (
                 <SwiperSlide key={index}>
-                  <div className="lg:h-[560px] relative group flex justify-center items-center">
+                  <div className="relative group flex justify-center items-center">
                     {/* Overlay */}
                     <div className=""></div>
                     {/* Image */}
-                    <div className="">
+                    <div className="w-auto md:w-[400px] min-h-[180px] md:h-auto ">
                       <Image
                         src={project.thumbnail}
                         alt={project.title}
-                        width={300}
-                        height={200}
+                        width={400}
+                        height={300}
                         quality={100}
-                        className="object-cover lg:scale-150"
+                        // className="object-cover"
                       />
                     </div>
                   </div>
                 </SwiperSlide>
               ))}
+              <SliderButtons />
             </Swiper>
           </div>
         </div>

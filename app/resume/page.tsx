@@ -11,6 +11,7 @@ import {
   SiFlask,
   SiFastapi,
   SiReact,
+  SiGithub,
 } from "react-icons/si";
 
 import { LuGraduationCap } from "react-icons/lu";
@@ -129,6 +130,7 @@ const skills = {
     { name: "Python", icon: <SiPython /> },
     { name: "Flask", icon: <SiFlask /> },
     { name: "Fastapi", icon: <SiFastapi /> },
+    { name: "Github", icon: <SiGithub /> },
   ],
 };
 
