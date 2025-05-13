@@ -84,7 +84,7 @@ export default function Work() {
       >
         <div className="flex flex-col justify-center lg:flex-row lg:gap-[30px] py-12">
           <div className="order-2 lg:order-none w-full lg:w-[50%] lg:h-[460px] flex flex-col lg:justify-between">
-            <div className="flex flex-col gap-[20px]">
+            <div className="flex flex-col gap-[20px] mt-12 md:mt-0">
               <div className="text-8xl leading-none text-outline text-transparent font-extrabold">
                 {project.num}
               </div>
@@ -110,7 +110,7 @@ export default function Work() {
                   <Tooltip>
                     <TooltipProvider delayDuration={100}>
                       <TooltipTrigger className="w-[70px] h-[70px] rounded-full bg-white/5 flex items-center justify-center group">
-                        <FaGithub />
+                        <FaGithub className="text-xl" />
                       </TooltipTrigger>
                       <TooltipContent className="bg-white py-2 px-4 rounded-md text-primary">
                         <p>Github</p>
@@ -123,7 +123,7 @@ export default function Work() {
                     <Tooltip>
                       <TooltipProvider delayDuration={100}>
                         <TooltipTrigger className="w-[70px] h-[70px] rounded-full bg-white/5 flex items-center justify-center group">
-                          <BsArrowUpRight />
+                          <BsArrowUpRight className="text-xl" />
                         </TooltipTrigger>
                         <TooltipContent className="bg-white py-2 px-4 rounded-md text-primary">
                           <p>Live Link</p>
@@ -148,20 +148,19 @@ export default function Work() {
                     {/* Overlay */}
                     <div className=""></div>
                     {/* Image */}
-                    <div className="w-auto md:w-[400px] min-h-[180px] md:h-auto ">
+                    <div className="relative w-full md:w-[500px] h-[200px] md:h-[350px] bg-white ">
                       <Image
                         src={project.thumbnail}
                         alt={project.title}
-                        width={400}
-                        height={300}
+                        fill
                         quality={100}
                         // className="object-cover"
                       />
+                      <SliderButtons />
                     </div>
                   </div>
                 </SwiperSlide>
               ))}
-              <SliderButtons />
             </Swiper>
           </div>
         </div>

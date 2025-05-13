@@ -13,7 +13,7 @@ export default function Photo() {
         }}
       >
         {/* Image */}
-        <motion.div className="w-[296px] h-[296px] lg:w-[498px] lg:h-[498px] mix-blend-lighten absolute overflow-hidden">
+        <motion.div className="w-[246px] h-[246px] lg:w-[448px] lg:h-[448px] mix-blend-lighten absolute overflow-hidden">
           <Image
             src={"/p1.png"}
             quality={100}
@@ -24,15 +24,15 @@ export default function Photo() {
         </motion.div>
         {/* Circle */}
         <motion.svg
-          className="w-[300px] h-[300px] lg:w-[506px] lg:h-[506px]"
+          className="w-[250px] h-[250px] lg:w-[450px] lg:h-[450px]"
           fill="transparent"
-          viewBox="0 0 506 506"
+          viewBox="0 0 450 450"
           xmlns="http://www.w3.org/2000/svg"
         >
           <motion.circle
-            cx="253"
-            cy="253"
-            r="250"
+            cx="225"
+            cy="225"
+            r="225"
             stroke="#00ff99"
             strokeWidth="4"
             strokeLinecap="round"

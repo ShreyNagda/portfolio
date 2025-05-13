@@ -121,7 +121,7 @@
     @apply border-border outline-ring/50;
   }
   .h1 {
-    @apply text-[40px] lg:text-[80px] leading-[1.1] font-semibold;
+    @apply text-[40px] lg:text-[65px] leading-[1.1] font-semibold;
   }
   .h2 {
     @apply text-[36px] lg:text-[48px] leading-[1.1] font-semibold;

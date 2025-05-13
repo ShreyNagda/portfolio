@@ -11,12 +11,12 @@ const stats = [
 
 export default function Stats() {
   return (
-    <section className="mt-4 mb-12 lg:pt-12 lg:pb-0">
-      <div className="flex flex-wrap gap-4 max-w-[80vw] mx-auto lg:max-w-none">
+    <section className="mt-8 mb-12 lg:pt-12 lg:pb-0">
+      <div className="flex flex-wrap lg:justify-between gap-4 max-w-[80vw] mx-auto lg:max-w-none">
         {stats.map((stat, index) => (
           <div
             key={index}
-            className="flex-1 flex gap-2 items-center justify-center lg:justify-start"
+            className="flex-1 flex gap-2 items-center justify-center lg:justify-center"
           >
             <CountUp
               end={stat.num}

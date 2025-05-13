@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <section className="h-full">
       <div className="container mx-auto h-full">
-        <div className="flex flex-col lg:flex-row items-center justify-between ">
+        <div className="flex flex-col lg:flex-row lg:gap-[20px] items-center justify-around">
           <div className="text-center lg:text-left order-2 lg:order-none">
             <span className="text-xl">Software Developer</span>
             <div className="h1 mb-6">

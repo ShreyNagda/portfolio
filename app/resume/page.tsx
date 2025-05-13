@@ -80,7 +80,7 @@ const experiences = {
 };
 
 const education = {
-  title: "My Education",
+  title: "My Education / Certifications",
   icon: <LuGraduationCap />,
   desc: "",
   items: [
