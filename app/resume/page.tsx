@@ -1,6 +1,13 @@
 "use client";
 
-import { FaNodeJs, FaHtml5, FaCss3, FaInfoCircle, FaJs } from "react-icons/fa";
+import {
+  FaNodeJs,
+  FaHtml5,
+  FaCss3,
+  FaInfoCircle,
+  FaJs,
+  FaCertificate,
+} from "react-icons/fa";
 import {
   SiTailwindcss,
   SiNextdotjs,
@@ -79,21 +86,44 @@ const experiences = {
   ],
 };
 
-const education = {
-  title: "My Education / Certifications",
-  icon: <LuGraduationCap />,
-  desc: "",
+const certifications = {
+  title: "My Certifications",
+  icon: <FaCertificate />,
+  desc: "Courses and exams that are not included in my academic program but are very useful",
   items: [
     {
-      institution: "Mindluster.com",
+      institution: "IBM SkillsBuild",
+      degree: "UX Design",
+      duration: "June 2025",
+    },
+    {
+      institution: "Pieces for Developers",
+      degree: "GenAI 101",
+      duration: "Feb 2025",
+    },
+    {
+      institution: "HackerRank.com",
       degree: "Basic React Certification",
-      duration: "Jan 2023",
+      duration: "Dec 2024",
+    },
+    {
+      institution: "HackerRank.com",
+      degree: "Javascript Certification",
+      duration: "Jan 2024",
     },
     {
       institution: "Udemy",
       degree: "Flutter Bootcamp",
       duration: "Sep 2022",
     },
+  ],
+};
+
+const education = {
+  title: "My Education",
+  icon: <LuGraduationCap />,
+  desc: "My academic qualifications and the respective scores",
+  items: [
     {
       institution: "A P Shah Institute of Technology",
       degree: "Bachelor of Engineering",
@@ -142,15 +172,16 @@ export default function Resume() {
         opacity: 1,
         transition: { delay: 2, duration: 0.4, ease: "easeIn" },
       }}
-      className="flex items-center justify-center py-12 lg:py-0"
+      className="flex items-center justify-center py-0 lg:py-0"
     >
       <div className="container mx-auto">
         <Tabs
-          className="flex flex-col lg:flex-row gap-[60px]"
+          className="flex flex-col lg:flex-row md:gap-[60px]"
           defaultValue="experience"
         >
           <TabsList className="flex flex-col w-full max-w-[300px] mx-auto lg:mx-0 gap-3 lg:gap-6">
             <TabsTrigger value="experience">Experience</TabsTrigger>
+            <TabsTrigger value="certifications">Certifications</TabsTrigger>
             <TabsTrigger value="education">Education</TabsTrigger>
             <TabsTrigger value="skills">Skills</TabsTrigger>
             <TabsTrigger value="about">About Me</TabsTrigger>
@@ -180,6 +211,36 @@ export default function Resume() {
                         <div className="flex items-center gap-2 justify-center">
                           <span className="w-[6px] h-[6px] bg-accent rounded-full"></span>
                           <p className="text-white/60">{item.organization}</p>
+                        </div>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </ScrollArea>
+            </TabsContent>
+            <TabsContent value="certifications" className="flex flex-col gap-5">
+              <div className="flex items-center justify-start gap-2 text-2xl text-accent font-extrabold">
+                {certifications.icon}
+                {certifications.title}
+              </div>
+              <div>{certifications.desc}</div>
+              <ScrollArea className="h-[50vh] w-full">
+                <ul className="grid grid-cols-1 lg:grid-cols-1 gap-4">
+                  {certifications.items.map((item, index) => {
+                    return (
+                      <li
+                        key={index}
+                        className="bg-[#232329] py-6 px-10 rounded-xl flex flex-col justify-center items-center lg:items-start gap-1"
+                      >
+                        <div className="text-accent text-sm">
+                          {item.duration}
+                        </div>
+                        <div className="text-xl max-w-[300px] min-h-[60px] text-center lg:text-left">
+                          {item.degree}
+                        </div>
+                        <div className="flex items-center gap-2 justify-center">
+                          <span className="w-[6px] h-[6px] bg-accent rounded-full"></span>
+                          <p className="text-white/60">{item.institution}</p>
                         </div>
                       </li>
                     );
