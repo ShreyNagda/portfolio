@@ -18,13 +18,18 @@ export default function Home() {
                 <span className="text-accent">Shrey Nagda</span>
               </div>
               <p className="max-w-[500px] mb-9 text-white/80">
-                I excel at creating elegant digital experiences and I am
-                proficient in various programming languages and technologies.
+                Full Stack Web Developer with 2+ years of experience in
+                developing scalable web applications using Next.js and
+                contemporary web technologies. Proficient in frontend and
+                backend development, with additional expertise incorporating AI
+                features with Python and building mobile apps using Flutter.
+                Good team player with experience volunteering for college tech
+                clubs and organizations.
               </p>
               <div className="flex flex-col lg:flex-row items-center gap-8">
                 <Button variant="outline">
                   <Link
-                    href={"/Resume.pdf"}
+                    href={"/Resume - Shrey Nagda.pdf"}
                     download
                     className="flex gap-2 items-center"
                   >
