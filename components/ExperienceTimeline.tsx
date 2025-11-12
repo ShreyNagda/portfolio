@@ -69,10 +69,12 @@ function TimelineItem({ item }: { item: (typeof experiences.items)[0] }) {
       <time className="block mb-2 text-sm font-normal leading-none text-accent">
         {item.duration}
       </time>
-      <p className="mb-4 text-base font-normal text-white/60">
+      <p className="md:mb-4 text-base font-normal text-white/60">
         {item.organization}
       </p>
-      <p className="text-sm font-normal text-white/80">{item.description}</p>
+      <p className="text-sm font-normal text-white/80 hidden md:visible">
+        {item.description}
+      </p>
     </motion.li>
   );
 }
@@ -92,7 +94,7 @@ export default function ExperienceTimeline() {
 
   return (
     <section className="container mx-auto py-12">
-      <h2 className="text-3xl font-bold text-center mb-12">
+      <h2 className="text-3xl font-bold text-center mb-5 md:mb-12">
         My <span className="text-accent">Journey</span>
       </h2>
 

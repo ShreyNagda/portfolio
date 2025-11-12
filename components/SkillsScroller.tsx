@@ -45,8 +45,8 @@ const skills = {
 const SkillIcon = ({ item }: { item: (typeof skills.items)[0] }) => (
   <TooltipProvider>
     <Tooltip>
-      <TooltipTrigger className="flex items-center justify-center h-20 bg-[#232329] rounded-lg mx-4 p-6">
-        <div className="text-4xl text-white/80 group-hover:text-accent transition-all duration-300">
+      <TooltipTrigger className="flex items-center justify-center h-10 md:h-20 bg-[#232329] rounded-lg mx-1 md:mx-4 p-4">
+        <div className="text-2xl md:text-4xl text-white/80 group-hover:text-accent transition-all duration-300">
           {item.icon} {/* */}
         </div>
       </TooltipTrigger>
@@ -62,19 +62,19 @@ export default function SkillsScroller() {
   const duplicatedSkills = [...skills.items, ...skills.items];
 
   return (
-    <section className="py-12">
-      <h2 className="text-3xl font-bold text-center mb-12">
+    <section className="md:py-12">
+      <h2 className="text-3xl font-bold text-center mb-5 md:mb-12">
         My <span className="text-accent">Skills</span>
       </h2>
       <div className="w-full overflow-hidden">
         <motion.div
-          className="flex gap-2 whitespace-nowrap"
+          className="flex whitespace-nowrap"
           animate={{
             x: ["0%", "-100%"], // Animate from start to end
           }}
           transition={{
             ease: "linear",
-            duration: 30, // Adjust duration to control speed
+            duration: 20, // Adjust duration to control speed
             repeat: Infinity, // Loop forever
           }}
         >
