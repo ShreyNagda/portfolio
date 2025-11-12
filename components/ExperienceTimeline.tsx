@@ -4,7 +4,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { SlBadge } from "react-icons/sl";
 
-// Data from your app/resume/page.tsx
+// Your updated data with the new "Technical Head" role
 const experiences = {
   title: "My Experience",
   icon: <SlBadge />,
@@ -50,71 +50,74 @@ const experiences = {
 // A single timeline item
 function TimelineItem({ item }: { item: (typeof experiences.items)[0] }) {
   return (
-    // Use whileInView to animate as it scrolls into view
+    // This `li` is now the relative parent for the badge
+    // It has NO margin-left. It fills the space given by the <ol>'s padding.
     <motion.li
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }} // Only animate once
+      viewport={{ once: true }}
       transition={{ duration: 0.5, ease: "easeInOut" }}
-      className="mb-10 ml-8 p-6 bg-[#232329] rounded-xl shadow-sm"
+      className="relative mb-10" // <-- Item is relative, margin-left is removed
     >
-      {/* The dot on the timeline */}
-      <span className="absolute flex items-center justify-center w-6 h-6 bg-accent rounded-full -left-3 ring-8 ring-[#1c1c22]">
-        {experiences.icon}
+      <span className="absolute flex items-center justify-center w-8 h-8 bg-accent rounded-full top-[1rem] left-[-1rem] -translate-x-1/2 ring-8 ring-[#1c1c22]">
+        {/* Increased size to w-8 h-8 and centered the icon */}
+        <div className="text-lg">{experiences.icon}</div>
       </span>
 
-      <h3 className="flex items-center mb-1 text-xl font-semibold text-white">
-        {item.role}
-      </h3>
-      <time className="block mb-2 text-sm font-normal leading-none text-accent">
-        {item.duration}
-      </time>
-      <p className="md:mb-4 text-base font-normal text-white/60">
-        {item.organization}
-      </p>
-      <p className="text-sm font-normal text-white/80 hidden md:visible">
-        {item.description}
-      </p>
+      <div className="p-6 bg-[#232329] rounded-xl shadow-sm">
+        <h3 className="flex items-center mb-1 text-xl font-semibold text-white">
+          {item.role}
+        </h3>
+        <time className="block mb-2 text-sm font-normal leading-none text-accent">
+          {item.duration}
+        </time>
+        <p className="md:mb-4 text-base font-normal text-white/60">
+          {item.organization}
+        </p>
+        <p className="hidden md:visible text-sm font-normal text-white/80">
+          {item.description}
+        </p>
+      </div>
     </motion.li>
   );
 }
 
 // The main timeline component
 export default function ExperienceTimeline() {
-  const targetRef = useRef<HTMLDivElement>(null);
+  const targetRef = useRef<HTMLOListElement>(null); // Ref is on the <ol>
 
-  // 1. Get scroll progress relative to the targetRef
   const { scrollYProgress } = useScroll({
     target: targetRef,
-    offset: ["start end", "end start"], // Start tracking when bottom of viewport hits top of component
+    offset: ["start end", "end end"],
   });
-
-  // 2. Transform the scroll progress (0 to 1) into a height value
-  const height = useTransform(scrollYProgress, [0, 0.65], ["0%", "100%"]);
+  const height = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
     <section className="container mx-auto py-12">
-      <h2 className="text-3xl font-bold text-center mb-5 md:mb-12">
+      <h2 className="text-3xl font-bold text-center mb-12">
         My <span className="text-accent">Journey</span>
       </h2>
 
-      {/* 3. The ref is attached to the container */}
-      <div ref={targetRef} className="relative">
-        {/* The static background line */}
-        <div className="absolute left-0 top-0 w-1.5 h-full bg-[#232329] rounded-full" />
+      {/*
+        This is the relative parent for the lines AND the items.
+        We add `pl-8` (2rem / 32px) to make space for the badge.
+      */}
+      <ol ref={targetRef} className="relative pl-8">
+        {/* The background line. Positioned at `left-4` (1rem / 16px).
+          This leaves space for the 32px-wide badge to center over it.
+        */}
+        <div className="absolute left-4 top-0 w-1.5 h-full bg-[#232329] rounded-full" />
 
-        {/* 4. The animated foreground line uses the transformed 'height' */}
+        {/* The animated line, same position. */}
         <motion.div
-          className="absolute left-0 top-0 w-1.5 h-full bg-accent rounded-full origin-top"
-          style={{ height }} // Animate the height based on scroll
+          className="absolute left-4 top-0 w-1.5 bg-accent rounded-full origin-top"
+          style={{ height }}
         />
 
-        <ol className="relative ml-2">
-          {experiences.items.map((item, index) => (
-            <TimelineItem key={index} item={item} />
-          ))}
-        </ol>
-      </div>
+        {experiences.items.map((item, index) => (
+          <TimelineItem key={index} item={item} />
+        ))}
+      </ol>
     </section>
   );
 }
