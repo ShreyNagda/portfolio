@@ -45,7 +45,7 @@ const skills = {
 const SkillIcon = ({ item }: { item: (typeof skills.items)[0] }) => (
   <TooltipProvider>
     <Tooltip>
-      <TooltipTrigger className="flex items-center justify-center h-10 md:h-20 bg-[#232329] rounded-lg mx-1 md:mx-4 p-4">
+      <TooltipTrigger className="flex items-center justify-center w-15 h-15 md:w-35 md:h-20 bg-[#232329] rounded-lg mx-1 md:mx-4 p-4">
         <div className="text-2xl md:text-4xl text-white/80 group-hover:text-accent transition-all duration-300">
           {item.icon} {/* */}
         </div>
