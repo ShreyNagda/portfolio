@@ -1,4 +1,6 @@
+import ExperienceTimeline from "@/components/ExperienceTimeline";
 import Photo from "@/components/Photo";
+import SkillsScroller from "@/components/SkillsScroller";
 import Socials from "@/components/Socials";
 import Stats from "@/components/Stats";
 import { Button } from "@/components/ui/button";
@@ -50,12 +52,15 @@ export default function Home() {
         </div>
       </section>
 
+      {/* === 2. ADD YOUR NEW SKILLS SCROLLER === */}
+      <SkillsScroller />
+
+      {/* === 3. ADD YOUR NEW EXPERIENCE TIMELINE === */}
+      <ExperienceTimeline />
+
       <footer className="text-center p-4 text-accent">
         Made with ❤️ | Shrey Nagda
       </footer>
-      {/* <section className="container mx-auto">
-        <div className="h2">About Me</div>
-      </section> */}
     </>
   );
 }
