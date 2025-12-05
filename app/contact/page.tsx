@@ -42,7 +42,7 @@ export default function Contact() {
           <div className="order-2 lg:order-none">
             <form
               className="flex flex-col gap-6 p-10 bg-[#27272c] rounded-xl"
-              action="https://formsubmit.co/shreynagda2714@gmail.com"
+              action="https://formspree.io/f/xyzrppdb"
               method="POST"
             >
               <h3 className="text-2xl text-accent">Lets work together</h3>
