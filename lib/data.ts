@@ -24,6 +24,7 @@ export const projects = [
     thumbnail: "/thumbnails/focal.png",
     tech: ["Flutter", "Background Services"],
     github: "https://github.com/ShreyNagda/focal",
+    live: "https://github.com/ShreyNagda/focal/releases/tag/release-01"
   },
   {
     tags: ["Fullstack", "Creative", "Web"],
