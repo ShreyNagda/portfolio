@@ -80,7 +80,7 @@ export default function Photo() {
         whileTap={{ scale: 0.95 }} // Tactile feedback on tap
       >
         {/* Image Container with Border */}
-        <div className="w-full h-full rounded-full overflow-hidden shadow-[0_0_40px_rgba(0,255,153,0.3)] bg-[#232329] md:shadow-none md:bg-transparent md:hover:shadow-[0_0_40px_rgba(0,255,153,0.3)] md:hover:bg-[#232329]">
+        <div className="w-full h-full rounded-full overflow-hidden shadow-[0_0_40px_rgba(0,255,153,0.3)] bg-[#232329] lg:shadow-none md:bg-transparent md:hover:shadow-[0_0_40px_rgba(0,255,153,0.3)] md:hover:bg-[#232329]">
           <div className="relative w-full h-full mix-blend-lighten">
             <Image
               src={"/p2.png"}
