@@ -6,13 +6,11 @@ import Link from "next/link";
 // import {  } from "react-icons/fa"
 import { HiMenuAlt3 } from "react-icons/hi";
 import { useState } from "react";
+import { Button } from "./ui/button";
 
 const links = [
   { name: "home", path: "/" },
-  { name: "services", path: "/services" },
-  // { name: "resume", path: "/resume" },
   { name: "work", path: "/work" },
-  { name: "contact", path: "/contact" },
 ];
 
 export default function MobileNav() {
@@ -52,6 +50,9 @@ export default function MobileNav() {
               {link.name}
             </Link>
           ))}
+          <Link href="/contact">
+            <Button variant="premium">Hire Me</Button>
+          </Link>
         </div>
       </SheetContent>
     </Sheet>

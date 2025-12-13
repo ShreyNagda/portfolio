@@ -17,7 +17,7 @@ export default function Header() {
         <div className="hidden lg:flex items-center gap-8">
           <Nav />
           <Link href="/contact">
-            <Button className="">Hire Me</Button>
+            <Button variant="premium">Hire Me</Button>
           </Link>
         </div>
 

@@ -14,6 +14,8 @@ const buttonVariants = cva(
         primary: "bg-primary text-white",
         outline:
           "border border-accent bg-transparent text-accent hover:bg-accent hover:text-primary rounded-full",
+        premium:
+          "bg-gradient-to-r from-accent to-accent-hover text-primary font-bold shadow-lg hover:shadow-accent/50 hover:scale-105 transition-all duration-300 rounded-full",
       },
       size: {
         default: "h-[44px] px-6 ",

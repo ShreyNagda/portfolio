@@ -1,170 +1,144 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import Link from "next/link";
-import { TooltipContent, TooltipProvider } from "@radix-ui/react-tooltip";
-import { BsArrowUpRight } from "react-icons/bs";
-import { Tooltip, TooltipTrigger } from "@/components/ui/tooltip";
-import { FaGithub } from "react-icons/fa";
-import { Swiper, SwiperSlide } from "swiper/react";
-
-import "swiper/css";
-import { Swiper as SwiperType } from "swiper/types";
 import Image from "next/image";
-import SliderButtons from "@/components/SliderButtons";
+import { BsArrowUpRight, BsGithub } from "react-icons/bs";
+import { projects } from "@/lib/data";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-const projects = [
-  {
-    num: "01",
-    category: "FullStack Project",
-    title: "SmartQuiz",
-    desc: "An online quiz conducting platform",
-    thumbnail: "/portfolio images/6.png",
-    tech: ["Next JS", "Tailwind CSS", "Shadcn UI", "MongoDB"],
-    github: "https://github.com/ShreyNagda/smartquiz-platform",
-    live: "https://smartquiz-platform.vercel.app/",
-  },
-  {
-    num: "02",
-    category: "Mobile App",
-    title: "Guess Up",
-    desc: "A mobile based charades game for party buffs",
-    thumbnail: "/portfolio images/2.png",
-    tech: ["Flutter", "Firebase"],
-    github: "https://github.com/ShreyNagda/guess-up",
-  },
-  {
-    num: "03",
-    category: "AI Project",
-    title: "Insurease",
-    desc: "AI-based Insurance Policy Analyzer ",
-    thumbnail: "/portfolio images/7.png",
-    tech: ["Next JS", "Tailwind CSS", "Huggingface Inference"],
-    github: "https://github.com/ShreyNagda/insurease",
-    live: "https://insurease-phi.vercel.app/",
-  },
-  {
-    num: "04",
-    category: "Flutter Project",
-    title: "Focus Flow Timer",
-    desc: "A pomodoro based productivity timer",
-    thumbnail: "/portfolio images/4.png",
-    tech: ["Flutter"],
-    github: "https://github.com/ShreyNagda/pomodoro",
-    live: "https://focus-flow-timer.netlify.app/",
-  },
-  {
-    num: "05",
-    category: "Frontend Project",
-    title: "Hangman Game",
-    desc: "A word guessing game",
-    thumbnail: "/portfolio images/1.png",
-    tech: ["React JS", "HTML 5", "CSS 3", "Dictionary API"],
-    github: "https://github.com/ShreyNagda/hangman-game-react",
-    live: "https://guess-or-hang.netlify.app/",
-  },
-];
+const categories = ["All", "Fullstack", "Frontend", "Mobile", "AI"];
 
 export default function Work() {
-  const [project, setProject] = useState(projects[0]);
-  function handleSlideChange(swiper: SwiperType): void {
-    const currentIndex = swiper.activeIndex;
-    setProject(projects[currentIndex]);
-  }
+  const [activeCategory, setActiveCategory] = useState("All");
+
+  const filteredProjects = projects.filter((project) => {
+    if (activeCategory === "All") return true;
+    return project.tags.includes(activeCategory);
+  });
 
   return (
-    <div className="container mx-auto">
-      <motion.section
-        initial={{ opacity: 0 }}
-        animate={{
-          opacity: 1,
-          transition: { delay: 2, duration: 0.4, ease: "easeIn" },
-        }}
-      >
-        <div className="flex flex-col justify-center lg:flex-row lg:gap-[30px] py-12">
-          <div className="order-2 lg:order-none w-full lg:w-[50%] lg:h-[460px] flex flex-col lg:justify-between">
-            <div className="flex flex-col gap-[20px] mt-12 md:mt-0">
-              <div className="text-8xl leading-none text-outline text-transparent font-extrabold">
-                {project.num}
-              </div>
-              <div className="text-[42px] font-bold leading-none text-white transition-all duration-500 capitalize">
-                {project.category}
-              </div>
-              <p className="text-white/60">
-                {project.title} - {project.desc}
-              </p>
-              <ul className="flex flex-wrap gap-x-4">
-                {project.tech.map((t, i) => {
-                  return (
-                    <li key={i} className="text-lg lg:text-xl text-accent">
-                      {t}
-                      {i !== project.tech.length - 1 ? "," : ""}
-                    </li>
-                  );
-                })}
-              </ul>
-              <div className="border border-b-white/20"></div>
-              <div className="flex items-center gap-4">
-                <Link href={project.github} target="_blank">
-                  <Tooltip>
-                    <TooltipProvider delayDuration={100}>
-                      <TooltipTrigger className="w-[70px] h-[70px] rounded-full bg-white/5 flex items-center justify-center group">
-                        <FaGithub className="text-xl" />
-                      </TooltipTrigger>
-                      <TooltipContent className="bg-white py-2 px-4 rounded-md text-primary">
-                        <p>Github</p>
-                      </TooltipContent>
-                    </TooltipProvider>
-                  </Tooltip>
-                </Link>
-                {project.live && (
-                  <Link href={project.live} target="_blank">
-                    <Tooltip>
-                      <TooltipProvider delayDuration={100}>
-                        <TooltipTrigger className="w-[70px] h-[70px] rounded-full bg-white/5 flex items-center justify-center group">
-                          <BsArrowUpRight className="text-xl" />
-                        </TooltipTrigger>
-                        <TooltipContent className="bg-white py-2 px-4 rounded-md text-primary">
-                          <p>Live Link</p>
-                        </TooltipContent>
-                      </TooltipProvider>
-                    </Tooltip>
-                  </Link>
-                )}
-              </div>
-            </div>
-          </div>
-          <div className="order-1 md:order-none w-full lg:w-[50%]">
-            <Swiper
-              spaceBetween={30}
-              slidesPerView={1}
-              className="md:mb-12"
-              onSlideChange={(swiper) => handleSlideChange(swiper)}
-            >
-              {projects.map((project, index) => (
-                <SwiperSlide key={index}>
-                  <div className="relative group flex justify-center items-center">
-                    {/* Overlay */}
-                    <div className=""></div>
-                    {/* Image */}
-                    <div className="relative w-full md:w-[500px] h-[200px] md:h-[350px] bg-white ">
-                      <Image
-                        src={project.thumbnail}
-                        alt={project.title}
-                        fill
-                        quality={100}
-                        // className="object-cover"
-                      />
-                      <SliderButtons />
+    <section className="min-h-[80vh] py-12 xl:py-24">
+      <div className="container mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="flex flex-col items-center mb-12"
+        >
+          <h2 className="text-4xl font-bold text-center mb-4">
+            My <span className="text-accent">Work</span>
+          </h2>
+          <p className="text-white/60 text-center max-w-2xl mb-8">
+            Explore a collection of my projects, ranging from full-stack web
+            applications to mobile apps and AI integrations.
+          </p>
+
+          <Tabs
+            defaultValue="All"
+            className="w-full max-w-[800px] mx-auto mb-12"
+            onValueChange={setActiveCategory}
+          >
+            <TabsList className="grid grid-cols-3 md:grid-cols-5 gap-2 bg-transparent">
+              {categories.map((category) => (
+                <TabsTrigger
+                  key={category}
+                  value={category}
+                  className="capitalize"
+                >
+                  {category}
+                </TabsTrigger>
+              ))}
+            </TabsList>
+          </Tabs>
+        </motion.div>
+
+        <motion.div
+          layout
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
+          <AnimatePresence mode="popLayout">
+            {filteredProjects.map((project, index) => (
+              <motion.div
+                layout
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.3 }}
+                key={project.title} // Using title as unique key
+                className="group relative flex flex-col gap-4"
+              >
+                {/* Image Container */}
+                <div className="relative w-full h-[250px] rounded-xl overflow-hidden cursor-pointer">
+                  <div className="absolute top-0 left-0 w-full h-full bg-black/10 z-10 group-hover:bg-black/60 transition-all duration-500"></div>
+                  <Image
+                    src={project.thumbnail}
+                    alt={project.title}
+                    fill
+                    className="object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+
+                  {/* Overlay Content */}
+                  <div className="absolute inset-0 flex flex-col justify-between p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
+                    {/* Tags */}
+                    <div className="flex justify-end">
+                      <span className="text-accent text-xs font-bold uppercase tracking-widest">
+                        {project.tags.join(", ")}
+                      </span>
+                    </div>
+
+                    {/* Links */}
+                    <div className="flex items-center justify-center gap-4">
+                      <Link
+                        href={project.github}
+                        target="_blank"
+                        className="w-12 h-12 rounded-full bg-accent text-primary flex items-center justify-center hover:bg-white hover:text-accent transition-all duration-300 shadow-lg"
+                      >
+                        <BsGithub className="text-2xl" />
+                      </Link>
+                      {project.live && (
+                        <Link
+                          href={project.live}
+                          target="_blank"
+                          className="w-12 h-12 rounded-full bg-white text-primary flex items-center justify-center hover:bg-accent hover:text-primary transition-all duration-300 shadow-lg"
+                        >
+                          <BsArrowUpRight className="text-2xl font-bold" />
+                        </Link>
+                      )}
+                    </div>
+
+                    {/* Tech Stack */}
+                    <div className="flex flex-wrap justify-center gap-2">
+                      {project.tech.map((item, index) => (
+                        <span
+                          key={index}
+                          className="text-xs font-medium text-white bg-primary/80 px-2 py-1 rounded-md"
+                        >
+                          {item}
+                        </span>
+                      ))}
                     </div>
                   </div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          </div>
-        </div>
-      </motion.section>
-    </div>
+                </div>
+
+                {/* Content */}
+                <div className="flex flex-col gap-2">
+                  <div className="flex justify-between items-center">
+                    <span className="text-outline text-transparent font-bold text-2xl">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                  </div>
+                  <h3 className="text-2xl font-bold text-white group-hover:text-accent transition-colors duration-300">
+                    {project.title}
+                  </h3>
+                  <p className="text-white/60 line-clamp-2">{project.desc}</p>
+                </div>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
+      </div>
+    </section>
   );
 }

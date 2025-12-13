@@ -70,7 +70,7 @@ export default function SkillsScroller() {
         <motion.div
           className="flex whitespace-nowrap"
           animate={{
-            x: ["0%", "-100%"], // Animate from start to end
+            x: ["0%", "-50%"], // Animate from start to end
           }}
           transition={{
             ease: "linear",

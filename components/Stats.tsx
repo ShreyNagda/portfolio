@@ -11,7 +11,7 @@ const stats = [
 
 export default function Stats() {
   return (
-    <section className="mt-8 mb-12 lg:pt-12 lg:pb-0">
+    <section className="mt-8 mb-12 lg:pt-12 lg:pb-0 py-10">
       <div className="flex flex-wrap lg:justify-between gap-4 max-w-[80vw] mx-auto lg:max-w-none">
         {stats.map((stat, index) => (
           <div

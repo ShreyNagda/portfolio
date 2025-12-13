@@ -1,7 +1,6 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { motion } from "framer-motion";
 import { SlBadge } from "react-icons/sl";
 
 // Your updated data with the new "Technical Head" role
@@ -47,77 +46,70 @@ const experiences = {
   ],
 };
 
-// A single timeline item
-function TimelineItem({ item }: { item: (typeof experiences.items)[0] }) {
-  return (
-    // This `li` is now the relative parent for the badge
-    // It has NO margin-left. It fills the space given by the <ol>'s padding.
-    <motion.li
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, ease: "easeInOut" }}
-      className="relative mb-10" // <-- Item is relative, margin-left is removed
-    >
-      <span className="absolute flex items-center justify-center w-8 h-8 bg-accent rounded-full top-[1rem] left-[-1rem] -translate-x-1/2 ring-8 ring-[#1c1c22]">
-        {/* Increased size to w-8 h-8 and centered the icon */}
-        <div className="text-lg">{experiences.icon}</div>
-      </span>
-
-      <div className="p-6 bg-[#232329] rounded-xl shadow-sm">
-        <h3 className="flex items-center mb-1 text-xl font-semibold text-white">
-          {item.role}
-        </h3>
-        <time className="block mb-2 text-sm font-normal leading-none text-accent">
-          {item.duration}
-        </time>
-        <p className="md:mb-4 text-base font-normal text-white/60">
-          {item.organization}
-        </p>
-        <p className="hidden md:visible text-sm font-normal text-white/80">
-          {item.description}
-        </p>
-      </div>
-    </motion.li>
-  );
-}
-
-// The main timeline component
 export default function ExperienceTimeline() {
-  const targetRef = useRef<HTMLOListElement>(null); // Ref is on the <ol>
-
-  const { scrollYProgress } = useScroll({
-    target: targetRef,
-    offset: ["start end", "end end"],
-  });
-  const height = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
-
   return (
-    <section className="container mx-auto py-12">
-      <h2 className="text-3xl font-bold text-center mb-12">
-        My <span className="text-accent">Journey</span>
-      </h2>
+    <section className="container mx-auto py-12 xl:py-24">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+        className="text-center mb-12"
+      >
+        <h2 className="text-3xl font-bold mb-4">
+          My <span className="text-accent">Journey</span>
+        </h2>
+        <p className="text-white/60 max-w-2xl mx-auto">
+          A timeline of my professional growth and contributions to various
+          organizations.
+        </p>
+      </motion.div>
 
-      {/*
-        This is the relative parent for the lines AND the items.
-        We add `pl-8` (2rem / 32px) to make space for the badge.
-      */}
-      <ol ref={targetRef} className="relative pl-8">
-        {/* The background line. Positioned at `left-4` (1rem / 16px).
-          This leaves space for the 32px-wide badge to center over it.
-        */}
-        <div className="absolute left-4 top-0 w-1.5 h-full bg-[#232329] rounded-full" />
-
-        {/* The animated line, same position. */}
-        <motion.div
-          className="absolute left-4 top-0 w-1.5 bg-accent rounded-full origin-top"
-          style={{ height }}
-        />
+      <div className="relative flex flex-col gap-8">
+        {/* Central Line (Desktop only) */}
+        <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-0.5 bg-accent/20 -translate-x-1/2" />
 
         {experiences.items.map((item, index) => (
-          <TimelineItem key={index} item={item} />
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: index * 0.1 }}
+            className={`relative flex flex-col md:flex-row items-center justify-between w-full ${
+              index % 2 === 0 ? "md:flex-row-reverse" : ""
+            }`}
+          >
+            {/* Empty Space for Desktop Alignment */}
+            <div className="hidden md:block w-[45%]" />
+
+            {/* Timeline Dot */}
+            <div className="absolute left-4 md:left-1/2 top-0 md:translate-y-6 w-4 h-4 bg-primary border-2 border-accent rounded-full z-10 -translate-x-1/2 md:translate-x-[-50%]" />
+
+            {/* Content Card */}
+            <div className="w-full md:w-[45%] pl-12 md:pl-0">
+              <div className="bg-[#232329] p-6 rounded-xl border border-transparent hover:border-accent/50 transition-all duration-300 group relative">
+                {/* Mobile Line Connector */}
+                <div className="md:hidden absolute left-[-29px] top-6 w-8 h-0.5 bg-accent/20" />
+
+                <span className="text-accent text-sm font-bold mb-2 block">
+                  {item.duration}
+                </span>
+                <h3 className="text-xl font-bold text-white mb-1 group-hover:text-accent transition-colors">
+                  {item.role}
+                </h3>
+                <h4 className="text-white/80 font-medium mb-4">
+                  {item.organization}
+                </h4>
+                <p className="text-white/60 text-sm">{item.description}</p>
+              </div>
+            </div>
+          </motion.div>
         ))}
-      </ol>
+
+        {/* Mobile Vertical Line */}
+        <div className="md:hidden absolute left-4 top-0 bottom-0 w-0.5 bg-accent/20 -translate-x-1/2" />
+      </div>
     </section>
   );
 }
