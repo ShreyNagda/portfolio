@@ -34,17 +34,17 @@ export default function Contact() {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch(
-        "https://formsubmit.co/ajax/shreynagda2714@gmail.com",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-          body: JSON.stringify(formData),
-        }
-      );
+      const response = await fetch("https://staticsend.vercel.app/api/send", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          ...formData,
+          to: "shreynagda2714@gmail.com",
+        }),
+      });
 
       if (response.ok) {
         alert("Message sent successfully!");
@@ -104,7 +104,7 @@ export default function Contact() {
                 onChange={handleChange}
               />
               <Textarea
-                className="h-[200px]"
+                className="h-[120px]"
                 placeholder="Type your message here."
                 name="message"
                 value={formData.message}
