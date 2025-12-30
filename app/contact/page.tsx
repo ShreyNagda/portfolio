@@ -5,9 +5,12 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { motion } from "framer-motion";
 import { ChangeEvent, useState } from "react";
+import { toast } from "sonner";
 import { FaEnvelope, FaMapMarkerAlt, FaPhoneAlt } from "react-icons/fa";
 
 export default function Contact() {
+  const FORM_URL = process.env.NEXT_PUBLIC_FORM_API_URL;
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -32,9 +35,14 @@ export default function Contact() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
+    if (!FORM_URL) {
+      toast.error("Form API URL is not configured.");
+      setIsSubmitting(false);
+      return;
+    }
 
     try {
-      const response = await fetch("https://staticsend.vercel.app/api/send", {
+      const response = await fetch(FORM_URL, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -42,19 +50,19 @@ export default function Contact() {
         },
         body: JSON.stringify({
           ...formData,
-          to: "shreynagda2714@gmail.com",
         }),
       });
 
       if (response.ok) {
-        alert("Message sent successfully!");
+        toast.success("Message sent successfully!");
         setFormData({ name: "", email: "", phone: "", message: "" });
       } else {
-        alert("Failed to send message. Please try again.");
+        console.error("Error:", response.statusText);
+        toast.error("Failed to send message. Please try again.");
       }
     } catch (error) {
       console.error(error);
-      alert("An error occurred. Please try again later.");
+      toast.error("An error occurred. Please try again later.");
     } finally {
       setIsSubmitting(false);
     }
