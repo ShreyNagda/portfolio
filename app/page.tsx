@@ -14,7 +14,13 @@ export default function Home() {
           <div className="flex flex-col md:flex-row md:gap-[20px] items-center justify-around pt-10 md:pt-0">
             <div className="text-center md:text-left order-1 md:order-none">
               <span className="text-xl text-white/80">
-                <Typewriter text="Software Developer" />
+                <Typewriter
+                  texts={[
+                    "Software Developer",
+                    "Problem Solver",
+                    "Tech Enthusiast",
+                  ]}
+                />
               </span>
               <div className="mt-2 h2 mb-6">
                 Hello I&apos;m <br />

@@ -135,7 +135,7 @@
     @apply text-[40px] lg:text-[65px] leading-[1.1] font-semibold;
   }
   .h2 {
-    @apply text-[30px] lg:text-[45px] leading-[1.1] font-semibold;
+    @apply text-[28px] lg:text-[45px] leading-[1.1] font-semibold;
   }
   .h3 {
     @apply text-[20px] lg:text-[20px] leading-[1.1] font-semibold;
