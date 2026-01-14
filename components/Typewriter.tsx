@@ -56,7 +56,7 @@ export default function Typewriter({
 
       {/* Animated text overlay */}
       <motion.span
-        className="absolute left-0 top-0 whitespace-nowrap flex items-center font-extralight"
+        className="absolute left-1/2 -translate-x-1/2 md:left-0 md:translate-x-0 top-0 whitespace-nowrap flex justify-center items-center font-extralight"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
       >
