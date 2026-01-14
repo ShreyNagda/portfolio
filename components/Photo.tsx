@@ -83,11 +83,19 @@ export default function Photo() {
         <div className="w-full h-full rounded-full overflow-hidden shadow-[0_0_40px_rgba(0,255,153,0.3)] bg-[#232329] lg:shadow-none md:bg-transparent md:hover:shadow-[0_0_40px_rgba(0,255,153,0.3)] md:hover:bg-[#232329]">
           <div className="relative w-full h-full mix-blend-lighten">
             <Image
-              src={"/p2.png"}
+              src={"/p5.png"}
               quality={100}
               fill
               alt="Profile Photo"
-              className="object-contain"
+              className="object-contain hidden md:block"
+              priority
+            />
+            <Image
+              src={"/p4.png"}
+              quality={100}
+              fill
+              alt="Profile Photo"
+              className="object-contain md:hidden"
               priority
             />
           </div>

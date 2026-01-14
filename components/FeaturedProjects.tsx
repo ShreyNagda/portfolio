@@ -8,6 +8,13 @@ import { BsArrowUpRight } from "react-icons/bs";
 import { FaGithub } from "react-icons/fa";
 import { Button } from "./ui/button";
 
+const handleProjectTap = () => {
+  // Haptic feedback for mobile
+  if (typeof window !== "undefined" && "vibrate" in navigator) {
+    navigator.vibrate(15);
+  }
+};
+
 export default function FeaturedProjects() {
   // Select top 3 projects to feature
   const featuredProjects = projects.slice(0, 3);
@@ -30,7 +37,6 @@ export default function FeaturedProjects() {
             problem-solving abilities.
           </p>
         </motion.div>
-
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
           {featuredProjects.map((project, index) => (
             <motion.div
@@ -39,7 +45,10 @@ export default function FeaturedProjects() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group relative flex flex-col gap-4"
+              whileHover={{ y: -10, transition: { duration: 0.3 } }}
+              whileTap={{ scale: 0.98 }}
+              onTap={handleProjectTap}
+              className="group relative flex flex-col gap-4 cursor-pointer"
             >
               {/* Image Container */}
               <div className="relative w-full h-[250px] rounded-xl overflow-hidden cursor-pointer">
@@ -61,21 +70,31 @@ export default function FeaturedProjects() {
 
                   {/* Links */}
                   <div className="flex items-center justify-center gap-4">
-                    <Link
-                      href={project.github}
-                      target="_blank"
-                      className="w-12 h-12 rounded-full bg-accent text-primary flex items-center justify-center hover:bg-white hover:text-accent transition-all duration-300 shadow-lg"
+                    <motion.div
+                      whileHover={{ scale: 1.15, rotate: 5 }}
+                      whileTap={{ scale: 0.9 }}
                     >
-                      <FaGithub className="text-2xl" />
-                    </Link>
-                    {project.live && (
                       <Link
-                        href={project.live}
+                        href={project.github}
                         target="_blank"
-                        className="w-12 h-12 rounded-full bg-white text-primary flex items-center justify-center hover:bg-accent hover:text-primary transition-all duration-300 shadow-lg"
+                        className="w-12 h-12 rounded-full bg-accent text-primary flex items-center justify-center hover:bg-white hover:text-accent transition-all duration-300 shadow-lg"
                       >
-                        <BsArrowUpRight className="text-2xl font-bold" />
+                        <FaGithub className="text-2xl" />
                       </Link>
+                    </motion.div>
+                    {project.live && (
+                      <motion.div
+                        whileHover={{ scale: 1.15, rotate: -5 }}
+                        whileTap={{ scale: 0.9 }}
+                      >
+                        <Link
+                          href={project.live}
+                          target="_blank"
+                          className="w-12 h-12 rounded-full bg-white text-primary flex items-center justify-center hover:bg-accent hover:text-primary transition-all duration-300 shadow-lg"
+                        >
+                          <BsArrowUpRight className="text-2xl font-bold" />
+                        </Link>
+                      </motion.div>
                     )}
                   </div>
                   {/* Tech Stack */}
@@ -105,7 +124,7 @@ export default function FeaturedProjects() {
               </div>
             </motion.div>
           ))}
-        </div>``
+        </div>
         <div className="flex justify-center">
           <Link href="/work">
             <Button

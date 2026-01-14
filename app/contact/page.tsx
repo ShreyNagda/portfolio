@@ -7,9 +7,11 @@ import { motion } from "framer-motion";
 import { ChangeEvent, useState } from "react";
 import { toast } from "sonner";
 import { FaEnvelope, FaMapMarkerAlt, FaPhoneAlt } from "react-icons/fa";
+import { useCopyToClipboard } from "@/lib/hooks";
 
 export default function Contact() {
   const FORM_URL = process.env.NEXT_PUBLIC_FORM_API_URL;
+  const { copyToClipboard } = useCopyToClipboard();
 
   const [formData, setFormData] = useState({
     name: "",
@@ -20,9 +22,24 @@ export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const info = [
-    { icon: <FaPhoneAlt />, title: "Phone", desc: "(+91) 940 532 1984" },
-    { icon: <FaEnvelope />, title: "Email", desc: "shreynagda2714@gmail.com" },
-    { icon: <FaMapMarkerAlt />, title: "Location", desc: "Thane, Maharashtra" },
+    {
+      icon: <FaPhoneAlt />,
+      title: "Phone",
+      desc: "(+91) 940 532 1984",
+      copyable: true,
+    },
+    {
+      icon: <FaEnvelope />,
+      title: "Email",
+      desc: "shreynagda2714@gmail.com",
+      copyable: true,
+    },
+    {
+      icon: <FaMapMarkerAlt />,
+      title: "Location",
+      desc: "Thane, Maharashtra",
+      copyable: false,
+    },
   ];
 
   const handleChange = (
@@ -132,15 +149,39 @@ export default function Contact() {
           <div className="flex-1 flex items-center md:items-start p-2 order-1 lg:order-none mb-8 xl:mb-0">
             <ul className="flex flex-col gap-10">
               {info.map((item, index) => (
-                <li key={index} className="flex items-center gap-2 md:gap-6">
-                  <div className="w-10 h-10 xl:w-12 xl:h-12 bg-[#27272c] text-accent rounded-md flex items-center justify-center">
+                <motion.li
+                  key={index}
+                  className="flex items-center gap-2 md:gap-6"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.1 * index }}
+                >
+                  <motion.div
+                    className="w-10 h-10 xl:w-12 xl:h-12 bg-[#27272c] text-accent rounded-md flex items-center justify-center"
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
                     <div className="">{item.icon}</div>
-                  </div>
+                  </motion.div>
                   <div className="flex-1">
                     <p className="text-white/60 text-sm">{item.title}</p>
-                    <h3 className="text-base">{item.desc}</h3>
+                    <motion.h3
+                      className={`text-base ${
+                        item.copyable
+                          ? "cursor-pointer hover:text-accent transition-colors"
+                          : ""
+                      }`}
+                      onClick={() =>
+                        item.copyable &&
+                        copyToClipboard(item.desc, `${item.title} copied!`)
+                      }
+                      whileHover={item.copyable ? { scale: 1.02 } : {}}
+                      whileTap={item.copyable ? { scale: 0.98 } : {}}
+                    >
+                      {item.desc}
+                    </motion.h3>
                   </div>
-                </li>
+                </motion.li>
               ))}
               <Socials className={"flex gap-4"} />
             </ul>

@@ -120,6 +120,17 @@
   * {
     @apply border-border outline-ring/50;
   }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
   .h1 {
     @apply text-[40px] lg:text-[65px] leading-[1.1] font-semibold;
   }

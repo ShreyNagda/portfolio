@@ -1,16 +1,29 @@
+"use client";
+
 import Link from "next/link";
 import { Button } from "./ui/button";
 import Nav from "./Nav";
-import MobileNav from "./MobileNav";
+import { motion } from "framer-motion";
 
 export default function Header() {
   return (
     <header className="py-8 xl:py-12 text-white">
       <div className="container mx-auto flex justify-between items-center">
         <Link href={"/"}>
-          <h1 className="text-4xl font-semibold">
-            Shrey<span className="text-accent">.</span>
-          </h1>
+          <motion.h1
+            className="text-4xl font-semibold"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            Shrey
+            <motion.span
+              className="text-accent"
+              whileHover={{ rotate: 360, scale: 1.2 }}
+              transition={{ duration: 0.5 }}
+            >
+              .
+            </motion.span>
+          </motion.h1>
         </Link>
 
         {/* Desktop Nav */}
@@ -19,11 +32,6 @@ export default function Header() {
           <Link href="/contact">
             <Button variant="premium">Hire Me</Button>
           </Link>
-        </div>
-
-        {/* Mobile Nav */}
-        <div className="lg:hidden">
-          <MobileNav />
         </div>
       </div>
     </header>

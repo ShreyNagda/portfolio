@@ -6,6 +6,7 @@ import { Toaster } from "sonner";
 import Header from "@/components/Header";
 import PageTransition from "@/components/PageTransition";
 import StairTransition from "@/components/StairsTransition";
+import ScrollToTop from "@/components/ScrollToTop";
 
 const jetBrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains",
@@ -32,6 +33,7 @@ export default function RootLayout({
         <Header />
         <StairTransition />
         <PageTransition>{children}</PageTransition>
+        <ScrollToTop />
       </body>
     </html>
   );
