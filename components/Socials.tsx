@@ -10,29 +10,14 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "./ui/tooltip";
+import { socials } from "@/lib/data";
 
-const socials = [
-  {
-    icon: <FaGithub />,
-    path: "http://github.com/ShreyNagda/",
-    label: "GitHub",
-  },
-  {
-    icon: <FaLinkedinIn />,
-    path: "https://www.linkedin.com/in/shrey-nagda/",
-    label: "LinkedIn",
-  },
-  {
-    icon: <RiInstagramFill />,
-    path: "https://www.instagram.com/shrey_nagda/",
-    label: "Instagram",
-  },
-  {
-    icon: <FaYoutube />,
-    path: "https://www.youtube.com/@shreynagda",
-    label: "YouTube",
-  },
-];
+const iconMap: Record<string, React.ReactNode> = {
+  GitHub: <FaGithub />,
+  LinkedIn: <FaLinkedinIn />,
+  Instagram: <RiInstagramFill />,
+  YouTube: <FaYoutube />,
+};
 
 const handleTap = () => {
   // Haptic feedback for mobile
@@ -54,16 +39,16 @@ export default function Socials({ className }: { className: string }) {
                 onTap={handleTap}
               >
                 <Link
-                  href={social.path}
+                  href={social.url}
                   target="_blank"
                   className="w-9 h-9 border border-accent rounded-full flex justify-center items-center text-accent text-lg hover:bg-accent hover:text-primary hover:shadow-[0_0_20px_rgba(0,255,153,0.5)] transition-all duration-300"
                 >
-                  {social.icon}
+                  {iconMap[social.name]}
                 </Link>
               </motion.div>
             </TooltipTrigger>
             <TooltipContent>
-              <p>{social.label}</p>
+              <p>{social.name}</p>
             </TooltipContent>
           </Tooltip>
         ))}

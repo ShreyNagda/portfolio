@@ -15,8 +15,9 @@ const jetBrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Shrey Nagda",
-  description: "Student | Software Developer",
+  title: "Shrey Nagda | Fullstack Developer & Flutter Specialist",
+  description:
+    "Fullstack Developer specializing in Next.js, TypeScript, Flutter & Mobile Development. Available for freelance projects. 3+ years of experience building web and mobile applications.",
 };
 
 export default function RootLayout({
@@ -27,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${jetBrainsMono.className} antialiased bg-primary text-secondary`}
+        className={`${jetBrainsMono.className} antialiased bg-primary text-secondary overflow-x-hidden`}
       >
         <Toaster richColors position="top-center" />
         <Header />

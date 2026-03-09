@@ -1,20 +1,20 @@
 "use client";
 
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "./ui/sheet";
-import { usePathname } from "next/navigation";
 import Link from "next/link";
-// import {  } from "react-icons/fa"
 import { HiMenuAlt3 } from "react-icons/hi";
 import { useState } from "react";
 import { Button } from "./ui/button";
 
 const links = [
-  { name: "home", path: "/" },
-  { name: "work", path: "/work" },
+  { name: "home", path: "/#home" },
+  { name: "work", path: "/#work" },
+  { name: "skills", path: "/#skills" },
+  { name: "experience", path: "/#experience" },
+  { name: "contact", path: "/#contact" },
 ];
 
 export default function MobileNav() {
-  const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const handleClose = () => setOpen(false);
   return (
@@ -41,16 +41,12 @@ export default function MobileNav() {
               href={link.path}
               key={index}
               onClick={handleClose}
-              className={`${
-                link.path === pathname
-                  ? "text-accent border-b-2 border-accent"
-                  : ""
-              } capitalize hover:text-accent transition-all`}
+              className="capitalize hover:text-accent transition-all"
             >
               {link.name}
             </Link>
           ))}
-          <Link href="/contact">
+          <Link href="#contact" onClick={handleClose}>
             <Button variant="premium">Hire Me</Button>
           </Link>
         </div>

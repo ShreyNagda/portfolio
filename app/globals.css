@@ -143,7 +143,7 @@
 }
 @layer components {
   .container {
-    @apply px-6 sm:px-8 lg:px-10 max-w-xl;
+    @apply px-3 md:px-4 lg:px-10 max-w-xl;
   }
 
   input:-webkit-autofill,

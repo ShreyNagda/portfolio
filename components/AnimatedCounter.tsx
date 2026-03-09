@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { motion, useInView, useSpring, useTransform } from "framer-motion";
+import { motion, useSpring, useTransform } from "framer-motion";
 
 interface AnimatedCounterProps {
   end: number;
@@ -17,7 +17,6 @@ export default function AnimatedCounter({
   suffix = "",
 }: AnimatedCounterProps) {
   const ref = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [hasAnimated, setHasAnimated] = useState(false);
 
   const motionValue = useSpring(0, {
@@ -29,11 +28,11 @@ export default function AnimatedCounter({
   const [displayValue, setDisplayValue] = useState(0);
 
   useEffect(() => {
-    if (isInView && !hasAnimated) {
+    if (!hasAnimated) {
       setHasAnimated(true);
       motionValue.set(end);
     }
-  }, [isInView, end, motionValue, hasAnimated]);
+  }, [end, motionValue, hasAnimated]);
 
   useEffect(() => {
     const unsubscribe = rounded.on("change", (latest) => {

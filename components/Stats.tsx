@@ -2,25 +2,18 @@
 
 import AnimatedCounter from "./AnimatedCounter";
 import { motion } from "framer-motion";
-
-const stats = [
-  { num: 4, text: "Years of experience", suffix: "+" },
-  { num: 20, text: "Projects completed", suffix: "+" },
-  { num: 8, text: "Technologies mastered", suffix: "+" },
-  { num: 500, text: "Code commits", suffix: "+" },
-];
+import { stats } from "@/lib/data";
 
 export default function Stats() {
   return (
-    <section className="mt-8 mb-12 lg:pt-12 lg:pb-0 py-10">
-      <div className="flex flex-wrap lg:justify-between gap-4 max-w-[80vw] mx-auto lg:max-w-none">
+    <section className="py-10">
+      <div className="flex flex-wrap lg:justify-between gap-4 mx-auto">
         {stats.map((stat, index) => (
           <motion.div
             key={index}
             className="flex-1 flex gap-2 items-center justify-center lg:justify-center"
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
             whileHover={{ scale: 1.05 }}
           >

@@ -12,11 +12,11 @@ export default function Photo() {
   const springConfig = { damping: 20, stiffness: 300 };
   const rotateX = useSpring(
     useTransform(y, [-0.5, 0.5], [10, -10]),
-    springConfig
+    springConfig,
   );
   const rotateY = useSpring(
     useTransform(x, [-0.5, 0.5], [-10, 10]),
-    springConfig
+    springConfig,
   );
 
   function handleMouseMove(event: React.MouseEvent<HTMLDivElement>) {
@@ -66,7 +66,7 @@ export default function Photo() {
             opacity: { delay: 2, duration: 0.3, ease: "easeIn" },
           },
         }}
-        className="relative w-[280px] h-[280px] md:w-[350px] md:h-[350px] lg:w-[400px] lg:h-[400px]"
+        className="relative w-[280px] h-[280px] md:w-[300px] md:h-[300px] lg:w-[400px] lg:h-[400px]"
         onMouseMove={handleMouseMove}
         onMouseLeave={handleLeave}
         onTouchMove={handleTouchMove}
@@ -86,16 +86,8 @@ export default function Photo() {
               src={"/p5.png"}
               quality={100}
               fill
-              alt="Profile Photo"
-              className="object-contain hidden md:block"
-              priority
-            />
-            <Image
-              src={"/p4.png"}
-              quality={100}
-              fill
-              alt="Profile Photo"
-              className="object-contain md:hidden"
+              alt="Shrey Nagda - Fullstack Developer and Flutter Specialist"
+              className="object-contain"
               priority
             />
           </div>

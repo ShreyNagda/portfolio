@@ -1,115 +1,117 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { SlBadge } from "react-icons/sl";
+import { useState } from "react";
+import {
+  FaBriefcase,
+  FaCalendarAlt,
+  FaChevronDown,
+  FaChevronUp,
+} from "react-icons/fa";
+import { Button } from "@/components/ui/button";
+import { experiences } from "@/lib/data";
 
-// Your updated data with the new "Technical Head" role
-const experiences = {
-  title: "My Experience",
-  icon: <SlBadge />,
-  items: [
-    {
-      role: "Technical Head",
-      organization: "ITSA",
-      description:
-        "Part of the core team managing the hackathon, helping with planning, promotion, and event execution.",
-      duration: "September 2025 - Apr 2026",
-    },
-    {
-      role: "Core Committee Member",
-      organization: "HackScript 6.0",
-      description:
-        "Part of the core team managing the hackathon, helping with planning, promotion, and event execution.",
-      duration: "Feb 2025 - Apr 2025",
-    },
-    {
-      role: "Frontend Web Developer",
-      organization: "GDG APSIT",
-      description:
-        "Worked on the official GDG website project as part of the development team, focusing on clean UI and interactive components.",
-      duration: "Oct 2024 - Feb 2025",
-    },
-    {
-      role: "Technical Co-Head",
-      organization: "ITSA",
-      description:
-        "Led technical teams, organized student-led workshops, and conducted multiple tech-focused events during the fest.",
-      duration: "Jul 2024 - Mar 2025",
-    },
-    {
-      role: "Frontend Web Developer",
-      organization: "OJUS 2024",
-      description:
-        "Contributed to building and maintaining the official fest website, ensuring responsive design and smooth user experience.",
-      duration: "Dec 2023 - Mar 2024",
-    },
-  ],
-};
+const INITIAL_DISPLAY_COUNT = 3;
 
 export default function ExperienceTimeline() {
+  const [showAll, setShowAll] = useState(false);
+
+  const displayedExperiences = showAll
+    ? experiences
+    : experiences.slice(0, INITIAL_DISPLAY_COUNT);
+
+  const hasMoreExperiences = experiences.length > INITIAL_DISPLAY_COUNT;
+
   return (
-    <section className="container mx-auto py-12 xl:py-24">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
-        className="text-center mb-12"
-      >
-        <h2 className="text-3xl font-bold mb-4">
-          My <span className="text-accent">Journey</span>
-        </h2>
-        <p className="text-white/60 max-w-2xl mx-auto">
-          A timeline of my professional growth and contributions to various
-          organizations.
-        </p>
-      </motion.div>
+    <section id="experience" className="relative py-12 xl:py-16">
+      {/* Top gradient separator */}
+      <div className="absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-primary to-transparent pointer-events-none" />
 
-      <div className="relative flex flex-col gap-8">
-        {/* Central Line (Desktop only) */}
-        <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-0.5 bg-accent/20 -translate-x-1/2" />
+      <div className="container mx-auto px-4">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-center mb-8"
+        >
+          <h2 className="text-3xl font-bold mb-2">
+            My <span className="text-accent">Journey</span>
+          </h2>
+        </motion.div>
 
-        {experiences.items.map((item, index) => (
-          <motion.div
-            key={index}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
-            className={`relative flex flex-col md:flex-row items-center justify-between w-full ${
-              index % 2 === 0 ? "md:flex-row-reverse" : ""
-            }`}
-          >
-            {/* Empty Space for Desktop Alignment */}
-            <div className="hidden md:block w-[45%]" />
+        {/* Horizontal Scrollable Cards on Mobile, Grid on Desktop */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {displayedExperiences.map((item, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: index * 0.1 }}
+              whileHover={{ y: -3 }}
+              className="relative group"
+            >
+              <div className="h-full bg-gradient-to-br from-[#232329] to-[#1c1c22] p-5 rounded-xl border border-white/5 hover:border-accent/30 transition-all duration-300">
+                {/* Duration */}
+                <div className="flex items-center gap-2 mb-3">
+                  <FaCalendarAlt className="text-accent text-xs" />
+                  <span className="text-accent text-xs font-medium">
+                    {item.duration}
+                  </span>
+                </div>
 
-            {/* Timeline Dot */}
-            <div className="absolute left-4 md:left-1/2 top-0 md:translate-y-6 w-4 h-4 bg-primary border-2 border-accent rounded-full z-10 -translate-x-1/2 md:translate-x-[-50%]" />
-
-            {/* Content Card */}
-            <div className="w-full md:w-[45%] pl-12 md:pl-0">
-              <div className="bg-[#232329] p-6 rounded-xl border border-transparent hover:border-accent/50 transition-all duration-300 group relative">
-                {/* Mobile Line Connector */}
-                <div className="md:hidden absolute left-[-29px] top-6 w-8 h-0.5 bg-accent/20" />
-
-                <span className="text-accent text-sm font-bold mb-2 block">
-                  {item.duration}
-                </span>
-                <h3 className="text-xl font-bold text-white mb-1 group-hover:text-accent transition-colors">
+                {/* Role */}
+                <h3 className="text-lg font-bold text-white mb-1 group-hover:text-accent transition-colors duration-300">
                   {item.role}
                 </h3>
-                <h4 className="text-white/80 font-medium mb-4">
-                  {item.organization}
-                </h4>
-                <p className="text-white/60 text-sm">{item.description}</p>
-              </div>
-            </div>
-          </motion.div>
-        ))}
 
-        {/* Mobile Vertical Line */}
-        <div className="md:hidden absolute left-4 top-0 bottom-0 w-0.5 bg-accent/20 -translate-x-1/2" />
+                {/* Organization */}
+                <div className="flex items-center gap-2 mb-3">
+                  <FaBriefcase className="text-white/40 text-xs" />
+                  <span className="text-white/60 text-sm font-medium">
+                    {item.organization}
+                  </span>
+                </div>
+
+                {/* Description - Hidden on mobile for compactness */}
+                <p className="text-white/50 text-xs leading-relaxed hidden md:block line-clamp-2">
+                  {item.description}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Show More/Less Button */}
+        {hasMoreExperiences && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="flex justify-center mt-8"
+          >
+            <Button
+              variant="outline"
+              onClick={() => setShowAll(!showAll)}
+              className="gap-2"
+            >
+              {showAll ? (
+                <>
+                  Show Less <FaChevronUp />
+                </>
+              ) : (
+                <>
+                  Show More ({experiences.length - INITIAL_DISPLAY_COUNT} more){" "}
+                  <FaChevronDown />
+                </>
+              )}
+            </Button>
+          </motion.div>
+        )}
       </div>
+
+      {/* Bottom gradient separator */}
+      <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-primary to-transparent pointer-events-none" />
     </section>
   );
 }
