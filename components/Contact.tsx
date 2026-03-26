@@ -145,7 +145,7 @@ export default function ContactSection() {
         {/* CTA Button */}
         <div className="mt-12 text-center">
           <a
-            href="mailto:shreynagda2714@gmail.com"
+            href="https://wa.me/919405321984?text=Hi%20Shrey!%20I%20would%20like%20to%20discuss%20a%20project%20with%20you."
             className="group inline-flex items-center gap-3 px-8 py-3 bg-primary text-white text-scale-sm rounded-full font-semibold transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
           >
             Start a Conversation
