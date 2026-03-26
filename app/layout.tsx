@@ -1,24 +1,25 @@
 import type { Metadata } from "next";
-import { JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import "sonner/dist/styles.css";
-import { Toaster } from "sonner";
-import Header from "@/components/Header";
-import PageTransition from "@/components/PageTransition";
-import StairTransition from "@/components/StairsTransition";
-import ScrollToTop from "@/components/ScrollToTop";
-
-const jetBrainsMono = JetBrains_Mono({
-  variable: "--font-jetbrains",
-  subsets: ["latin"],
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800"],
-});
+import localFont from "next/font/local";
+import CursorHighlight from "@/components/CursorHighlight";
+import InitialLoader from "@/components/InitialLoader";
 
 export const metadata: Metadata = {
   title: "Shrey Nagda | Fullstack Developer & Flutter Specialist",
   description:
     "Fullstack Developer specializing in Next.js, TypeScript, Flutter & Mobile Development. Available for freelance projects. 3+ years of experience building web and mobile applications.",
 };
+
+const aeonik = localFont({
+  src: [
+    { path: "./fonts/AeonikAir.otf", weight: "200", style: "normal" },
+    { path: "./fonts/AeonikLight.otf", weight: "300", style: "normal" },
+    { path: "./fonts/AeonikRegular.otf", weight: "400", style: "normal" },
+    { path: "./fonts/AeonikMedium.otf", weight: "500", style: "normal" },
+    { path: "./fonts/AeonikBold.otf", weight: "700", style: "normal" },
+    { path: "./fonts/AeonikBlack.otf", weight: "900", style: "normal" },
+  ],
+});
 
 export default function RootLayout({
   children,
@@ -28,13 +29,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${jetBrainsMono.className} antialiased bg-primary text-secondary overflow-x-hidden`}
+        className={`${aeonik.className} antialiased bg-white text-primary overflow-x-hidden cursor-grabbing select-none`}
       >
-        <Toaster richColors position="top-center" />
-        <Header />
-        <StairTransition />
-        <PageTransition>{children}</PageTransition>
-        <ScrollToTop />
+        <InitialLoader />
+        <CursorHighlight />
+        {children}
       </body>
     </html>
   );
