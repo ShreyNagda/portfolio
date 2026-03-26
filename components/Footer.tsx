@@ -40,10 +40,10 @@ export default function FooterSection() {
           </nav>
 
           <a
-            href="mailto:shreynagda2714@gmail.com"
+            href="mailto:contact@shreynagda.me"
             className="text-scale-email font-medium tracking-tight text-white/95 transition-colors hover:text-white"
           >
-            shreynagda2714@gmail.com
+            contact@shreynagda.me
           </a>
         </div>
       </div>

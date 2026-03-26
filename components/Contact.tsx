@@ -66,7 +66,7 @@ export default function ContactSection() {
         <div className="grid md:grid-cols-2 gap-6 mb-12">
           {/* Email CTA */}
           <a
-            href="mailto:shreynagda2714@gmail.com"
+            href="mailto:contact@shreynagda.me"
             className="group bg-white rounded-md p-6 md:p-8 shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
           >
             <div className="flex items-start gap-4">
@@ -78,7 +78,7 @@ export default function ContactSection() {
                   Email Me
                 </h3>
                 <p className="text-primary/70 text-scale-sm mb-1">
-                  shreynagda2714@gmail.com
+                  contact@shreynagda.me
                 </p>
                 <p className="text-primary/60 text-scale-xs">
                   I&apos;ll get back to you within 24 hours
