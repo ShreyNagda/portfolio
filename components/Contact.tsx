@@ -77,9 +77,9 @@ export default function ContactSection() {
                 <h3 className="text-scale-xl font-semibold text-primary mb-2">
                   Email Me
                 </h3>
-                <p className="text-primary/70 text-scale-sm mb-1">
+                {/* <p className="text-primary/70 text-scale-sm mb-1">
                   contact@shreynagda.me
-                </p>
+                </p> */}
                 <p className="text-primary/60 text-scale-xs">
                   I&apos;ll get back to you within 24 hours
                 </p>
@@ -102,9 +102,9 @@ export default function ContactSection() {
                 <h3 className="text-scale-xl font-semibold text-primary mb-2">
                   Message Me
                 </h3>
-                <p className="text-primary/70 text-scale-sm mb-1">
+                {/* <p className="text-primary/70 text-scale-sm mb-1">
                   +91 (940) 532-1984
-                </p>
+                </p> */}
                 <p className="text-primary/60 text-scale-xs">
                   Available for quick chats
                 </p>
