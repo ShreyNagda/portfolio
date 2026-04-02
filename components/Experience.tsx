@@ -23,7 +23,7 @@ export default function ExperienceSection() {
       dateRange: "Oct 2024 - Feb 2025",
       role: "Frontend Web Developer",
       description:
-        "Part of the core team managing the hackathon, helping with planning, promotion, and event execution.",
+        "Optmized frontend architecture reducing the load times by 30%, improved workflow efficiency by 25% using Git/GitHub collaboration",
       skills: ["NextJS", "Firebase", "Tailwind CSS"],
     },
   ];
