@@ -4,7 +4,7 @@
 <h3 align="center">🚀 Full Stack Web Developer | Flutter Developer | Tech Enthusiast</h3>
 
 <p align="center">
-  <a href="https://shreyn.vercel.app" target="_blank"><strong>shreyn.vercel.app</strong></a>
+  <a href="https://shreynagda.me" target="_blank"><strong>shreynagda.me</strong></a>
 </p>
 
 ---
